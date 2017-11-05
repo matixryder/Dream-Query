@@ -1,0 +1,12 @@
+---
+- name: CMPE272 - Assignment 1 - Apache Undeployment
+  hosts: 10.211.55.31
+  sudo: yes
+  user: ducnguyen
+  tasks:
+   - name: Stop Apache2 service
+     service: name=apache2 state=stopped
+   - name: Uninstall Apache2
+     apt: name=apache2 update_cache=yes state=absent
+   - name: Remove Apache2 folder
+     raw: sudo rm -Rf /var/www

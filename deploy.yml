@@ -1,0 +1,18 @@
+---
+- name: CMPE272 - Assignment 1 - Apache Deployment
+  hosts: 10.211.55.31
+  sudo: yes
+  user: ducnguyen
+  vars:
+          http_port: 80
+  tasks:
+   - name: Update and Upgrade Apt Packages
+     become: true
+     apt:  
+       update_cache: yes
+   - name: Install Apache
+     apt: name=apache2 update_cache=yes state=installed
+   - name: Start Apache2
+     service: name=apache2 state=started
+   - name: Create Hello World
+     raw: echo "<h1>Hello World</:h1>" > /var/www/html/index.html
